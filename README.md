@@ -38,7 +38,7 @@ This Lambda script manages the creation and deletion of Kyte sites. It has a tim
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:[region]:[account]:log-group:/aws/lambda/kyte-site-management:*"
+                "arn:aws:logs:[region]:[account]:log-group:/aws/lambda/kyte-update-shipyard:*"
             ]
         },
 		{

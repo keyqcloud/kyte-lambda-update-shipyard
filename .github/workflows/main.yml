@@ -24,9 +24,9 @@ jobs:
       run: echo "TAG_NAME=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
     - name: Copy latest files to S3
-      run: aws s3 cp ./releases/latest/kyte-site-management.zip s3://${{ secrets.S3_BUCKET }}/lambda/functions/latest/kyte-site-management.zip
+      run: aws s3 cp ./releases/latest/kyte-update-shipyard.zip s3://${{ secrets.S3_BUCKET }}/lambda/functions/latest/kyte-update-shipyard.zip
     - name: Sync archive files to S3
-      run: aws s3 cp ./releases/archive/kyte-site-management-${{ env.TAG_NAME }}.zip s3://${{ secrets.S3_BUCKET }}/lambda/functions/archive/kyte-site-management-${{ env.TAG_NAME }}.zip
+      run: aws s3 cp ./releases/archive/kyte-update-shipyard-${{ env.TAG_NAME }}.zip s3://${{ secrets.S3_BUCKET }}/lambda/functions/archive/kyte-update-shipyard-${{ env.TAG_NAME }}.zip
 
     - name: Invalidate CloudFront cache for latest files
       run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths '/*'
