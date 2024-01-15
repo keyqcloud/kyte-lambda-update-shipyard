@@ -7,6 +7,7 @@ import os
 import re
 import json
 import logging
+import mimetypes
 
 # Initialize logging
 logger = logging.getLogger()
@@ -47,7 +48,8 @@ def upload_files_to_s3(file_names, bucket_name):
         file_path = os.path.join('/tmp/', file_name)
         try:
             # Upload file to S3 bucket
-            s3_client.upload_file(file_path, bucket_name, file_name)
+            content_type = mimetypes.guess_type(file_path)[0]
+            s3_client.upload_file(file_path, bucket_name, file_name, ExtraArgs={'ContentType': content_type})
             logger.info(f"Uploaded {file_name} to S3 bucket {bucket_name}")
 
         except Exception as e:
